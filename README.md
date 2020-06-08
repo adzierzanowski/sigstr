@@ -8,7 +8,7 @@ the names so I can link to the code with C.
 
 It's probably the stupid way to obtain this information* but it was fun.
 
-\* Yes, yes it is. It appears that clicking the Wi-Fi icon while holding ⌥
+\* Well, yes it is. It appears that clicking the Wi-Fi icon while holding ⌥
 gives you that info.
 
 ## building
