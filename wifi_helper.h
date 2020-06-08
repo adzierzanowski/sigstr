@@ -1,8 +1,13 @@
 #ifndef WIFI_HELPER_H
 #define WIFI_HELPER_H
 
-#define ANSI_END "\033[0m"
+#include <stdbool.h>
 
+
+const char *ANSI_END; 
+const char *ANSI_RED;
+const char *ANSI_YELLOW;
+const char *ANSI_GREEN;
 
 enum wh_wifi_mode {
   MODE_11A,
@@ -14,6 +19,9 @@ enum wh_wifi_mode {
 };
 
 extern const char *wh_get_ssid();
+extern const char *wh_get_mac();
+extern const char *wh_get_country();
+extern const char *wh_get_iface_name();
 extern int wh_get_noise();
 extern int wh_get_rssi();
 extern int wh_get_transmit_pwr();

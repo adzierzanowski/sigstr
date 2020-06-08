@@ -1,23 +1,29 @@
 #include "wifi_helper.h"
 
+
+const char *ANSI_END = "\033[0m";
+const char *ANSI_GREEN = "\033[38;5;2m";
+const char *ANSI_YELLOW = "\033[38;5;3m";
+const char *ANSI_RED = "\033[38;5;1m";
+
 const char *wh_rssi_ansi_prefix(int rssi)
 {
   if (rssi >= -75)
-    return "\033[38;5;10m";
+    return ANSI_GREEN;
   else if (rssi >= -80)
-    return "\033[38;5;11m";
+    return ANSI_YELLOW;
   else
-    return "\033[38;5;9m";
+    return ANSI_RED;
 }
 
 const char *wh_noise_ansi_prefix(int noise)
 {
   if (noise <= -80)
-    return "\033[38;5;10m";
+    return ANSI_GREEN; 
   else if (noise <= -85)
-    return "\033[38;5;11m";
+    return ANSI_YELLOW;
   else
-    return "\033[38;5;9m";
+    return ANSI_RED;
 }
 
 const char *wh_mode_string(enum wh_wifi_mode mode)

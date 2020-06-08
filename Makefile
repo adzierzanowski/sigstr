@@ -5,7 +5,7 @@ CFLAGS = -L /usr/lib/swift -O3 -Wall -Wpedantic
 EXE = sigstr
 
 all:
-	swiftc -S sigstr.swift > $(ASM_SRC)
+	swiftc -O -S sigstr.swift > $(ASM_SRC)
 	$(DEMANGLER) $(ASM_SRC)
 	$(CC) $(C_SRC) $(ASM_SRC) -L /usr/lib/swift -o $(EXE)
 
