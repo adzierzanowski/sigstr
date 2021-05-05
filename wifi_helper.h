@@ -25,6 +25,7 @@ extern const char *wh_get_iface_name();
 extern int wh_get_noise();
 extern int wh_get_rssi();
 extern int wh_get_transmit_pwr();
+extern int wh_get_channel();
 extern double wh_get_transmit_rate();
 extern enum wh_wifi_mode wh_get_mode();
 

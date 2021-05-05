@@ -63,3 +63,10 @@ func wh_get_iface_name() -> UnsafePointer<Int8> {
   let iname = iface.interfaceName ?? "<unknown>"
   return _cstr_ptr(iname)
 }
+
+func wh_get_channel() -> Int {
+  let iface = _get_current_iface()
+  let channel = iface.wlanChannel()!
+  let chanNumber = channel.channelNumber
+  return chanNumber
+}

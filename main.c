@@ -9,6 +9,7 @@
 struct flags_t
 {
   bool verbose;
+  bool color;
 };
 
 void parse_args(int argc, char *argv[], struct flags_t *flags)
@@ -22,12 +23,18 @@ void parse_args(int argc, char *argv[], struct flags_t *flags)
       printf("options:\n");
       printf("  -h, --help    show this help message and exit\n");
       printf("  -v            show all possible stats\n");
+      printf("  -c, --color   colorize output\n");
       exit(0);
     }
 
     if (strcmp(argv[i], "-v") == 0)
     {
       flags->verbose = true;
+    }
+
+    if (strcmp(argv[i], "-c") == 0 || strcmp(argv[i], "--color") == 0)
+    {
+      flags->color = true;
     }
   }
 }
@@ -50,6 +57,7 @@ void print_wifi_info(struct flags_t flags)
   enum wh_wifi_mode mode = wh_get_mode();
   int noise = wh_get_noise();
   int tpwr = wh_get_transmit_pwr();
+  int channel = wh_get_channel();
   double trate = wh_get_transmit_rate();
 
   printf(
@@ -58,11 +66,11 @@ void print_wifi_info(struct flags_t flags)
   );
   printf(
     "%-15s %s%d%s dBm\n",
-    "rssi:", wh_rssi_ansi_prefix(rssi), rssi, ANSI_END
+    "rssi:", flags.color ? wh_rssi_ansi_prefix(rssi) : "", rssi, flags.color ? ANSI_END : ""
   );
   printf(
     "%-15s %s%d%s dBm\n",
-    "noise:", wh_noise_ansi_prefix(noise), noise, ANSI_END
+    "noise:", flags.color ? wh_noise_ansi_prefix(noise) : "" , noise, flags.color ? ANSI_END : ""
   );
   printf(
     "%-15s %d mW\n",
@@ -76,6 +84,10 @@ void print_wifi_info(struct flags_t flags)
   
   if (flags.verbose)
   {
+    printf(
+      "%-15s %d\n",
+      "channel:", channel 
+    );
     printf(
       "%-15s %s\n",
       "iface name:", iname
@@ -98,7 +110,8 @@ void print_wifi_info(struct flags_t flags)
 int main(int argc, char *argv[])
 {
   struct flags_t flags = {
-    .verbose = false
+    .verbose = false,
+    .color = false
   };
 
   parse_args(argc, argv, &flags);
