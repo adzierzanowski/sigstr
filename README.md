@@ -2,14 +2,15 @@
 
 This is a utility to spit out some Wi-Fi stats.
 
-What makes it a little bit interesting is that I provide a small wrapper over
-`CWInterface` from macOS API in Swift. Then I generate assembly and demangle
-the names so I can link to the code with C.
+What makes it a little bit interesting is that I wrote a small wrapper over
+macOS API's `CWInterface` in Swift. Then I generated the assembly from the
+Swift code and demangled the function names so I could use them in the main
+C code avoiding linking issues.
 
-It's probably the stupid way to obtain this information* but it was fun.
+This is probably a stupid way to obtain this information* but it was fun.
 
 \* Well, yes it is. It appears that clicking the Wi-Fi icon while holding ⌥
-gives you that info.
+gives you this info.
 
 ## building
 
